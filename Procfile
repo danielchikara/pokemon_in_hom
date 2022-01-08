@@ -1,1 +1,1 @@
-web: gunicorn linkinsin.wsgi --log-file -
+web: gunicorn pokemon_in_hom.wsgi --log-file -
