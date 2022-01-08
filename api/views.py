@@ -2,6 +2,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import permissions
 from api.serializers import *
 from api.models import *
 # Create your views here.
@@ -21,6 +22,7 @@ class RegisterClientView(APIView):
         return Response({"success": success}, status=code)
 
 
+# login and create token
 class LoginView(APIView):
 
     def post(self, request):
@@ -31,3 +33,11 @@ class LoginView(APIView):
             token, created = Token.objects.get_or_create(user=user)
             serializer_user = UserClientSerializer(user)
             return Response({"token": token.key, "user": serializer_user.data}, status=200)
+
+
+class LogoutView(APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request):
+        request.user.auth_token.delete()
+        return Response(status=204)

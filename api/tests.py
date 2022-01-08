@@ -29,3 +29,21 @@ class UserTestCase(TestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(json.loads(response.content), {'success': True})
+
+    def test_login_user(self):
+        response = self.client.post('/api/login/client/', {
+            'email': 'chikara@test.com',
+            'password': 'rc{4@qHjR>!b`yAV'
+        },
+            format='json'
+        )
+        result = json.loads(response.content)
+        self.assertIn('token', result)
+        self.access_token = result['token']
+        return result['token']
+
+    def test_logout_user(self):
+        self.client.credentials(
+            HTTP_AUTHORIZATION='Token ' + self.test_login_user())
+        response = self.client.post('/api/logout/client/')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
