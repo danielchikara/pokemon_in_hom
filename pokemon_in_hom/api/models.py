@@ -33,11 +33,11 @@ class User(AbstractUser):
 
 
 class Element(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-
+    english = models.CharField(max_length=100, default="Normal")
+    chinese = models.CharField(max_length=100, default="一般")
+    japanese = models.CharField(max_length=100, default="ノーマル")
     def __str__(self):
-        return self.name
+        return self.english
 
 
 class Pokemon(models.Model):

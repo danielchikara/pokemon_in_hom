@@ -1,0 +1,164 @@
+[
+    {
+        "model": "api.Element",
+        "pk": 1,
+        "fields": {
+            "english": "Normal",
+            "chinese": "一般",
+            "japanese": "ノーマル"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk": 2,
+        "fields": {
+            "english": "Fighting",
+            "chinese": "格斗",
+            "japanese": "かくとう"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk": 3,
+        "fields": {
+            "english": "Flying",
+            "chinese": "飞行",
+            "japanese": "ひこう"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk": 4,
+        "fields": {
+            "english": "Poison",
+            "chinese": "毒",
+            "japanese": "どく"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk": 5,
+        "fields": {
+            "english": "Ground",
+            "chinese": "地上",
+            "japanese": "じめん"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk": 6,
+        "fields": {
+            "english": "Rock",
+            "chinese": "岩石",
+            "japanese": "いわ"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk": 7,
+        "fields": {
+            "english": "Bug",
+            "chinese": "虫",
+            "japanese": "むし"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk": 8,
+        "fields": {
+            "english": "Ghost",
+            "chinese": "幽灵",
+            "japanese": "ゴースト"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk":9,
+        "fields": {
+            "english": "Steel",
+            "chinese": "钢",
+            "japanese": "はがね"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk": 10,
+        "fields": {
+            "english": "Fire",
+            "chinese": "炎",
+            "japanese": "ほのお"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk": 11,
+        "fields": {
+            "english": "Water",
+            "chinese": "水",
+            "japanese": "みず"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk": 12,
+        "fields": {
+            "english": "Grass",
+            "chinese": "草",
+            "japanese": "くさ"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk": 13,
+        "fields": {
+            "english": "Electric",
+            "chinese": "电",
+            "japanese": "でんき"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk": 14,
+        "fields": {
+            "english": "Psychic",
+            "chinese": "超能",
+            "japanese": "エスパー"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk": 15,
+        "fields": {
+            "english": "Ice",
+            "chinese": "冰",
+            "japanese": "こおり"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk": 16,
+        "fields": {
+            "english": "Dragon",
+            "chinese": "龙",
+            "japanese": "ドラゴン"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk": 17,
+        "fields": {
+            "english": "Dark",
+            "chinese": "恶",
+            "japanese": "あく"
+        }
+    },
+    {
+        "model": "api.Element",
+        "pk": 18,
+        "fields": {
+            "english": "Fairy",
+            "chinese": "妖精",
+            "japanese": "フェアリー"
+        }
+    }
+]
