@@ -77,8 +77,13 @@ WSGI_APPLICATION = 'pokemon_in_hom.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'ec2-18-235-86-66.compute-1.amazonaws.com',
+        'NAME': 'dbdi0j45vojqra',
+        'USER': 'nkctuhehpthfdk',
+        'PASSWORD': '65f219527c84d663cb792733df1c3851ead14efbcf6440580dd376f2819edbb0',
+        'PORT': '5432',
+
     }
 }
 
@@ -125,3 +130,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# AUTHENTICATION_EMAIL
+AUTH_USER_MODEL = 'api.User'
