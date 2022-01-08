@@ -1,0 +1,1 @@
+web: gunicorn linkinsin.wsgi --log-file -
