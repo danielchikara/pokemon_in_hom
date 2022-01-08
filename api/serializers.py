@@ -1,4 +1,5 @@
 
+from django.contrib.auth import authenticate
 from rest_framework import serializers
 from api.models import Pokemon, User
 from django.core import exceptions
@@ -26,4 +27,31 @@ class ClientRegisterSerializer(serializers.Serializer):
             user = User.objects.create_user(email=email, password=password)
             user.save()
             data["user"] = user
+        return data
+
+
+class UserClientSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('email', 'id')
+
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField()
+
+    def validate(self, data):
+        email = data.get("email", "")
+        password = data.get("password", "")
+        if email and password:
+            user = authenticate(email=email, password=password)
+            if user:
+                data["user"] = user
+            else:
+                msg = 'Este usuario y contraseña no coinciden, intenta de nuevo.'
+                raise exceptions.ValidationError(msg)
+        else:
+            msg = 'Se deben enviar el email y la contraseña.'
+            raise exceptions.ValidationError(msg)
         return data

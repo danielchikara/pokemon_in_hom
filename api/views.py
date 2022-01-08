@@ -1,9 +1,11 @@
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from api.models import Pokemon, User
-from django.shortcuts import render
 from api.serializers import *
+from api.models import *
 # Create your views here.
+
 
 class RegisterClientView(APIView):
 
@@ -17,3 +19,15 @@ class RegisterClientView(APIView):
             success = True
             code = 201
         return Response({"success": success}, status=code)
+
+
+class LoginView(APIView):
+
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        if user:
+            token, created = Token.objects.get_or_create(user=user)
+            serializer_user = UserClientSerializer(user)
+            return Response({"token": token.key, "user": serializer_user.data}, status=200)
