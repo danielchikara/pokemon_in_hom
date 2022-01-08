@@ -2,6 +2,9 @@ from django.contrib.auth.models import BaseUserManager, AbstractUser
 from django.db import models
 # Create your models here.
 
+# Custom AUTHENTICATION
+
+
 class SocialUserManager(BaseUserManager):
 
     def create_user(self, email, password=None, **kwargs):
@@ -27,3 +30,23 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+
+
+class Element(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
+class Pokemon(models.Model):
+    id_element = models.ForeignKey(
+        Element, related_name="element_pokemons", on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    image = models.CharField(max_length=700)
+    id_pokedex = models.IntegerField()
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
