@@ -55,3 +55,10 @@ class LoginSerializer(serializers.Serializer):
             msg = 'Se deben enviar el email y la contraseña.'
             raise exceptions.ValidationError(msg)
         return data
+
+
+class PokemonSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Pokemon
+        fields = ('id_pokedex', 'name', 'id_element','image', 'description')
