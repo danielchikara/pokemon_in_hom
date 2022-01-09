@@ -10,4 +10,7 @@ urlpatterns = [
     path('logout/client/', LogoutView.as_view()),
     #pokemon
     path('pokemon/create/', CreatePokemonView.as_view()),
+    path('pokemon/list/', ListPokemonView.as_view()),
+    path('pokemon/update/<int:pk>/', UpdatePokemonView.as_view()),
+    path('pokemon/delete/<int:pk>/', DeletePokemonView.as_view()),
 ]

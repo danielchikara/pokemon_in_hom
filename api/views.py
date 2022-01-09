@@ -50,3 +50,29 @@ class CreatePokemonView(generics.CreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     authentication_class = (TokenAuthentication)
     serializer_class = PokemonSerializer
+
+
+# Lista de pokemones
+class ListPokemonView(generics.ListAPIView):
+    serializer_class = PokemonSerializer
+    
+    def get_queryset(self):
+        search = self.request.query_params.get('id_element', None)
+        if search is not None:
+            return Pokemon.objects.filter(id_element=search)
+        return Pokemon.objects.all()
+
+
+# Actualización de pokemon
+class UpdatePokemonView(generics.UpdateAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    authentication_class = (TokenAuthentication)
+    serializer_class = PokemonSerializer
+    queryset = Pokemon.objects.all()
+
+
+# Eliminación de pokemon
+class DeletePokemonView(generics.DestroyAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    authentication_class = (TokenAuthentication)
+    serializer_class = PokemonSerializer

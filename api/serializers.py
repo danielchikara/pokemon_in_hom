@@ -58,7 +58,7 @@ class LoginSerializer(serializers.Serializer):
 
 
 class PokemonSerializer(serializers.ModelSerializer):
-
+    element_english   = serializers.ReadOnlyField(source='id_element.english')
     class Meta:
         model = Pokemon
-        fields = ('id_pokedex', 'name', 'id_element','image', 'description')
+        fields = ('id_pokedex', 'name', 'id_element','image', 'description', 'element_english')
