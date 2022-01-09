@@ -6,10 +6,10 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import sys
 from pathlib import Path
 import dj_database_url
-import django_heroku
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'rest_framework',
+    'rest_framework.authtoken',
     'api',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+# autenticacion con token y paginación
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,18 +83,36 @@ WSGI_APPLICATION = 'pokemon_in_hom.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': 'ec2-18-235-86-66.compute-1.amazonaws.com',
-        'NAME': 'dbdi0j45vojqra',
-        'USER': 'nkctuhehpthfdk',
-        'PASSWORD': '65f219527c84d663cb792733df1c3851ead14efbcf6440580dd376f2819edbb0',
-        'PORT': '5432',
-
+if 'test' in sys.argv:
+    #base de datos de test 
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'HOST': 'ec2-100-25-72-111.compute-1.amazonaws.com',
+            'NAME': 'd6lesbk4i59eho',
+            'USER': 'eywsgwdjppjtjg',
+            'PASSWORD': '8812d62ddd25b529603e453ded7a0192dbc83b05b94a2a46f1af9b065eb70a1e',
+            'PORT': '5432',
+            'TEST': {
+                'NAME': 'd6lesbk4i59eho',
+            }
+        }
     }
-}
+else:
+    #base de datos de produccion
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'HOST': 'ec2-18-235-86-66.compute-1.amazonaws.com',
+            'NAME': 'dbdi0j45vojqra',
+            'USER': 'nkctuhehpthfdk',
+            'PASSWORD': '65f219527c84d663cb792733df1c3851ead14efbcf6440580dd376f2819edbb0',
+            'PORT': '5432',
+            'TEST': {
+                'NAME': 'dbdi0j45vojqra',
+            }
+        }
+    }
 
 
 # Password validation
@@ -133,4 +160,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # AUTHENTICATION_EMAIL
 AUTH_USER_MODEL = 'api.User'
-django_heroku.settings(locals())
+
