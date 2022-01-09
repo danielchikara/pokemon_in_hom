@@ -20,17 +20,26 @@ Biblioteca de Postman: https://www.postman.com/mgd-2021/workspace/inhom-web/over
 
 
 ## En la terminal 
-Instalación de requerimientos  con su entorno virtual de preferencia  install requirements.txt  
-
-Para migración de base de datos  sh migrate.sh  
-
-uso de fixture  tipo de pokemon  python3 manage.py  loaddata type.json  
-
-para el uso de la base de datos de prueba  python3 manage.py  test --keepdb
+Instalación de requerimientos  con su entorno virtual de preferencia  
+```
+pip  install -r  requirements.txt  
+```
+Para migración de base de datos  
+```
+sh migrate.sh  
+```
+uso de fixture  tipo de pokemon  
+ ```
+ python3 manage.py  loaddata type.json  
+```
+para el uso de la base de datos de prueba
+```
+  python3 manage.py  test --keepdb
+```
 
 ## Autenticación
 La autenticación es por medio token. Solo esta disponible para crear actualizar,eliminar pokemons y logout del sistema
 
 
 ## Ramas
-la rama main se encarga del desarrollo local y la heroku_configs  es la rama de despliegue
+la rama main se encarga del desarrollo local y la heroku_configs  es la rama de despliegue ademas heroku_configs tiene mas requerimientos para instalar

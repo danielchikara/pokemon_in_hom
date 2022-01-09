@@ -45,14 +45,14 @@ class LogoutView(APIView):
         return Response(status=204)
 
 
-# Creación de pokemon
+# Creación de pokemon recibe todos  los parametros del modelo Pokemon
 class CreatePokemonView(generics.CreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     authentication_class = (TokenAuthentication)
     serializer_class = PokemonSerializer
 
 
-# Lista de pokemones
+# La lista de pokemon puede  recibir   un parametro de filtrado por elemento 
 class ListPokemonView(generics.ListAPIView):
     serializer_class = PokemonSerializer
     
@@ -63,7 +63,7 @@ class ListPokemonView(generics.ListAPIView):
         return Pokemon.objects.all().order_by('id')
 
 
-# Actualización de pokemon
+# Actualización de pokemon recibe los mismo parametros de el create
 class UpdatePokemonView(generics.UpdateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     authentication_class = (TokenAuthentication)
@@ -71,7 +71,7 @@ class UpdatePokemonView(generics.UpdateAPIView):
     queryset = Pokemon.objects.all()
 
 
-# Eliminación de pokemon
+# Eliminación de pokemon  recibe el id del pokemon a eliminar
 class DeletePokemonView(generics.DestroyAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     authentication_class = (TokenAuthentication)
