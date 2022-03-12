@@ -5,10 +5,16 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework import permissions
 from api.serializers import *
+from django.views.decorators.csrf import csrf_exempt
 from api.models import *
+from django.utils.decorators import method_decorator
+
+
 # Create your views here.
 
 
+
+@method_decorator(csrf_exempt, name='dispatch')
 class RegisterClientView(APIView):
 
     def post(self, request):
@@ -24,6 +30,8 @@ class RegisterClientView(APIView):
 
 
 # Inicio de sesion y creación de token
+
+@method_decorator(csrf_exempt, name='dispatch')
 class LoginView(APIView):
 
     def post(self, request):
@@ -37,22 +45,24 @@ class LoginView(APIView):
 
 
 # eliminación de token
+@method_decorator(csrf_exempt, name='dispatch')
 class LogoutView(APIView):
-    permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request):
         request.user.auth_token.delete()
         return Response(status=204)
 
 
-# Creación de pokemon
+# Creación de pokemon recibe todos  los parametros del modelo Pokemon
+
+@method_decorator(csrf_exempt, name='dispatch')
 class CreatePokemonView(generics.CreateAPIView):
-    permission_classes = (permissions.IsAuthenticated,)
-    authentication_class = (TokenAuthentication)
     serializer_class = PokemonSerializer
 
 
-# Lista de pokemones
+# La lista de pokemon puede  recibir   un parametro de filtrado por elemento 
+
+@method_decorator(csrf_exempt, name='dispatch')
 class ListPokemonView(generics.ListAPIView):
     serializer_class = PokemonSerializer
     
@@ -63,17 +73,17 @@ class ListPokemonView(generics.ListAPIView):
         return Pokemon.objects.all().order_by('id')
 
 
-# Actualización de pokemon
+# Actualización de pokemon recibe los mismo parametros de el create
+
+@method_decorator(csrf_exempt, name='dispatch')
 class UpdatePokemonView(generics.UpdateAPIView):
-    permission_classes = (permissions.IsAuthenticated,)
-    authentication_class = (TokenAuthentication)
     serializer_class = PokemonSerializer
     queryset = Pokemon.objects.all()
 
 
-# Eliminación de pokemon
+# Eliminación de pokemon  recibe el id del pokemon a eliminar
+
+@method_decorator(csrf_exempt, name='dispatch')
 class DeletePokemonView(generics.DestroyAPIView):
-    permission_classes = (permissions.IsAuthenticated,)
-    authentication_class = (TokenAuthentication)
     serializer_class = PokemonSerializer
     queryset = Pokemon.objects.all()

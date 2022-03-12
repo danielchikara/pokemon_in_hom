@@ -41,6 +41,8 @@ class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField()
 
+    """Function  que  que recibe  información del emai y password
+         para validar el usuario con la base de datos"""
     def validate(self, data):
         email = data.get("email", "")
         password = data.get("password", "")
@@ -58,7 +60,10 @@ class LoginSerializer(serializers.Serializer):
 
 
 class PokemonSerializer(serializers.ModelSerializer):
-    element_english   = serializers.ReadOnlyField(source='id_element.english')
+    # element_english variable que trae la información del elemento
+    element_english = serializers.ReadOnlyField(source='id_element.english')
+
     class Meta:
         model = Pokemon
-        fields = ('id_pokedex', 'name', 'id_element','image', 'description', 'element_english')
+        fields = ('id_pokedex', 'name', 'id_element',
+                  'image', 'description', 'element_english')
